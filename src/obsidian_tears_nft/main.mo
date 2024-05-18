@@ -31,6 +31,7 @@ import ExtCore "lib/ext/Core";
 import AID "lib/util/AccountIdentifier";
 import SVG "svg";
 import T "types";
+import Pricing "pricing";
 
 actor class () = this {
 
@@ -1532,5 +1533,9 @@ actor class () = this {
     };
     _totalToSell := 0;
     tokensToBurn;
+  };
+
+  public func testPricing() : async Float {
+    return await Pricing.getICPPrice();
   };
 };
