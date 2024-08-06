@@ -28,6 +28,7 @@ module {
             last30daysIcpPrice = [];
             lastUpdatedDay = 0;
             lastUpdatedPosition = 0;
+            
         };
     };
 
