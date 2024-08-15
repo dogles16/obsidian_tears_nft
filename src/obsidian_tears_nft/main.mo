@@ -32,6 +32,9 @@ import Env "env";
 import ExtCore "lib/ext/Core";
 import SVG "svg";
 import T "types";
+import Pricing "pricing";
+
+import ExchangeRate "lib/ext/ExchangeRate";
 
 actor class () = this {
 
@@ -147,6 +150,7 @@ actor class () = this {
   stable var _sold : Nat = 0;
   stable var _totalToSell : Nat = 0;
   stable var _hasBeenInitiated : Bool = false;
+  stable var _nftPriceData : Pricing.NftPriceData = Pricing.initNftPriceData();
 
   // Hash tables
   var _salesPrincipals : HashMap.HashMap<AccountIdentifier, Text> = HashMap.fromIter(_salesPrincipalsState.vals(), 0, AID.equal, AID.hash);
@@ -1564,5 +1568,9 @@ actor class () = this {
     };
     _totalToSell := 0;
     tokensToBurn;
+  };
+
+  public func testPricing() : async ExchangeRate.GetExchangeRateResult {
+    return await Pricing.getICPPrice(null);
   };
 };
